@@ -50,19 +50,21 @@ class Pedidos extends conectar{
         return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function update_pedido($Id){
+    public function update_pedido($Id, $Id_socio, $Fecha_Pedido, $Detalle, $Sub_Total, $Total_ISV, $Total,
+        $Fecha_Entrega){
         $conectar = parent::conexion();
         parent::set_names();
         $sql="UPDATE ma_pedidos SET Id_Socio = ?, Fecha_Pedido = ?, Detalle = ? Sub_Total = ?, Total_ISV = ?,
-        Total = ?, Fecha_Entrega = ? WHERE Id = $Id  ORDER BY Id";
+        Total = ?, Fecha_Entrega = ? WHERE Id = ?  ORDER BY Id";
         $sql=$conectar->prepare($sql);
-        $sql->bindValue(1, $Id_socio);
-        $sql->bindValue(2, $Fecha_Pedido);
-        $sql->bindValue(3, $Detalle);
-        $sql->bindValue(4, $Sub_Total);
-        $sql->bindValue(5, $Total_ISV);
-        $sql->bindValue(6, $Total);
-        $sql->bindValue(7, $Fecha_Entrega);
+        $sql->bindValue(1, $Id);
+        $sql->bindValue(2, $Id_socio);
+        $sql->bindValue(3, $Fecha_Pedido);
+        $sql->bindValue(4, $Detalle);
+        $sql->bindValue(5, $Sub_Total);
+        $sql->bindValue(6, $Total_ISV);
+        $sql->bindValue(7, $Total);
+        $sql->bindValue(8, $Fecha_Entrega);
         $sql->execute();
         return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
 
